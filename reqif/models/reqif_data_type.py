@@ -45,6 +45,37 @@ class ReqIFDataTypeDefinitionInteger:
         self.last_change: Optional[str] = last_change
         self.long_name: str = long_name
 
+class ReqIFDataTypeDefinitionReal:
+    def __init__(
+        self,
+        description: Optional[str],
+        identifier: str,
+        last_change: Optional[str],
+        long_name: str,
+        accuracy: str,
+        max_value: str,
+        min_value: str
+    ):
+        self.description: Optional[str] = description
+        self.identifier: str = identifier
+        self.last_change: Optional[str] = last_change
+        self.long_name: str = long_name
+        self.accuracy: Optional[str] = accuracy
+        self.max_value: Optional[str] = max_value
+        self.min_value: Optional[str] = min_value
+
+class ReqIFDataTypeDefinitionDate:
+    def __init__(
+        self,
+        description: Optional[str],
+        identifier: str,
+        last_change: Optional[str],
+        long_name: str,
+    ):
+        self.description: Optional[str] = description
+        self.identifier: str = identifier
+        self.last_change: Optional[str] = last_change
+        self.long_name: str = long_name
 
 class ReqIFEnumValue:
     def __init__(  # pylint: disable=too-many-arguments
@@ -125,3 +156,35 @@ class ReqIFDataTypeDefinitionXHTML:
         self.identifier: str = identifier
         self.last_change: Optional[str] = last_change
         self.long_name: Optional[str] = long_name
+
+class ReqIFDataTypeDefinitionReal:
+    def __init__(
+        self,
+        description: Optional[str],
+        identifier: str,
+        last_change: Optional[str],
+        long_name: str,
+        accuracy: str,
+        max_value: str,
+        min_value: str
+    ):
+        self.description: Optional[str] = description
+        self.identifier: str = identifier
+        self.last_change: Optional[str] = last_change
+        self.long_name: str = long_name
+        self.accuracy: Optional[str] = accuracy
+        self.max_value: Optional[str] = max_value
+        self.min_value: Optional[str] = min_value
+
+class ReqIFDataTypeDefinitionDate:
+    def __init__(
+        self,
+        description: Optional[str],
+        identifier: str,
+        last_change: Optional[str],
+        long_name: str,
+    ):
+        self.description: Optional[str] = description
+        self.identifier: str = identifier
+        self.last_change: Optional[str] = last_change
+        self.long_name: str = long_name

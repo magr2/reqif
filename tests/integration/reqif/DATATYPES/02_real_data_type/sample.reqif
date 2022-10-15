@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<REQ-IF xmlns="http://www.omg.org/spec/ReqIF/20110401/reqif.xsd" xmlns:configuration="http://eclipse.org/rmf/pror/toolextensions/1.0">
+  <CORE-CONTENT>
+    <REQ-IF-CONTENT>
+      <DATATYPES>
+        <DATATYPE-DEFINITION-REAL IDENTIFIER="TEST_DATATYPE_IDENTIFIER" LAST-CHANGE="2021-10-14T10:11:59.495+02:00" LONG-NAME="tReal" ACCURACY="12345678" MAX="100000.0" MIN="-100000.0"/>
+      </DATATYPES>
+    </REQ-IF-CONTENT>
+  </CORE-CONTENT>
+</REQ-IF>

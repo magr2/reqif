@@ -58,6 +58,21 @@ ATTRIBUTE_XHTML_TEMPLATE = """\
             </ATTRIBUTE-VALUE-XHTML>
 """
 
+ATTRIBUTE_REAL_TEMPLATE = """\
+            <ATTRIBUTE-VALUE-REAL THE-VALUE={value}>
+              <DEFINITION>
+                <ATTRIBUTE-DEFINITION-REAL-REF>{definition_ref}</ATTRIBUTE-DEFINITION-REAL-REF>
+              </DEFINITION>
+            </ATTRIBUTE-VALUE-REAL>
+"""
+
+ATTRIBUTE_DATE_TEMPLATE = """\
+            <ATTRIBUTE-VALUE-DATE THE-VALUE={value}>
+              <DEFINITION>
+                <ATTRIBUTE-DEFINITION-DATE-REF>{definition_ref}</ATTRIBUTE-DEFINITION-DATE-REF>
+              </DEFINITION>
+            </ATTRIBUTE-VALUE-DATE>
+"""
 
 class SpecObjectParser:
     @staticmethod
@@ -165,6 +180,35 @@ class SpecObjectParser:
                 attribute = SpecObjectAttribute(
                     xml_node=attribute_xml,
                     attribute_type=SpecObjectAttributeType.XHTML,
+                    definition_ref=attribute_definition_ref,
+                    value=attribute_value,
+                )
+            elif attribute_xml.tag == "ATTRIBUTE-VALUE-REAL":
+                attribute_value = attribute_xml.attrib["THE-VALUE"]
+
+                attribute_definition_ref = (
+                    attribute_xml.find("DEFINITION")
+                    .find("ATTRIBUTE-DEFINITION-REAL-REF")
+                    .text
+                )
+                attribute = SpecObjectAttribute(
+                    xml_node=attribute_xml,
+                    attribute_type=SpecObjectAttributeType.REAL,
+                    definition_ref=attribute_definition_ref,
+                    value=attribute_value,
+                )
+
+            elif attribute_xml.tag == "ATTRIBUTE-VALUE-DATE":
+                attribute_value = attribute_xml.attrib["THE-VALUE"]
+
+                attribute_definition_ref = (
+                    attribute_xml.find("DEFINITION")
+                    .find("ATTRIBUTE-DEFINITION-DATE-REF")
+                    .text
+                )
+                attribute = SpecObjectAttribute(
+                    xml_node=attribute_xml,
+                    attribute_type=SpecObjectAttributeType.DATE,
                     definition_ref=attribute_definition_ref,
                     value=attribute_value,
                 )
@@ -278,5 +322,16 @@ class SpecObjectParser:
                     value=attribute.value,
                 )
 
+            elif attribute.attribute_type == SpecObjectAttributeType.REAL:
+                output += ATTRIBUTE_REAL_TEMPLATE.format(
+                    definition_ref=attribute.definition_ref,
+                    value=attribute.value,
+                )
+            
+            elif attribute.attribute_type == SpecObjectAttributeType.DATE:
+                output += ATTRIBUTE_DATE_TEMPLATE.format(
+                    definition_ref=attribute.definition_ref,
+                    value=attribute.value,
+                )
         output += "          </VALUES>\n"
         return output

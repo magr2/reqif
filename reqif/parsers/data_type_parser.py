@@ -9,6 +9,8 @@ from reqif.models.reqif_data_type import (
     ReqIFDataTypeDefinitionInteger,
     ReqIFEnumValue,
     ReqIFDataTypeDefinitionXHTML,
+    ReqIFDataTypeDefinitionDate,
+    ReqIFDataTypeDefinitionReal,
 )
 
 
@@ -21,6 +23,8 @@ class DataTypeParser:
         ReqIFDataTypeDefinitionInteger,
         ReqIFDataTypeDefinitionEnumeration,
         ReqIFDataTypeDefinitionXHTML,
+        ReqIFDataTypeDefinitionDate,
+        ReqIFDataTypeDefinitionReal,
     ]:
         assert "DATATYPE-DEFINITION-" in data_type_xml.tag, f"{data_type_xml}"
 
@@ -143,6 +147,34 @@ class DataTypeParser:
                 max_length=None,
             )
 
+        if data_type_xml.tag == "DATATYPE-DEFINITION-REAL":     
+            accuracy = (
+                attributes["ACCURACY"] if "ACCURACY" in attributes else None
+            )
+            max_value = (
+                attributes["MAX-VALUE"] if "MAX-VALUE" in attributes else None
+            )
+            min_value = (
+                attributes["MIN-VALUE"] if "MIN-VALUE" in attributes else None
+            )
+            return ReqIFDataTypeDefinitionReal(
+                description=description,
+                identifier=identifier,
+                last_change=last_change,
+                long_name=long_name,
+                accuracy=accuracy,
+                max_value=max_value,
+                min_value=min_value,
+            )
+
+        if data_type_xml.tag == "DATATYPE-DEFINITION-DATE":
+            return ReqIFDataTypeDefinitionDate(
+                description=description,
+                identifier=identifier,
+                last_change=last_change,
+                long_name=long_name,
+            )
+
         raise NotImplementedError(etree.tostring(data_type_xml))
 
     @staticmethod
@@ -243,5 +275,43 @@ class DataTypeParser:
                 output += ">\n"
                 output += "        </DATATYPE-DEFINITION-XHTML>\n"
             return output
+
+        if isinstance(data_type_definition, ReqIFDataTypeDefinitionReal):
+            output = "        <DATATYPE-DEFINITION-REAL"
+            if data_type_definition.description:
+                output += f' DESC="{data_type_definition.description}"'
+
+            output += f' IDENTIFIER="{data_type_definition.identifier}"'
+            if data_type_definition.last_change:
+                output += f' LAST-CHANGE="{data_type_definition.last_change}"'
+            if data_type_definition.long_name:
+                output += f' LONG-NAME="{data_type_definition.long_name}"'
+            if data_type_definition.max_length:
+                output += f' MAX-LENGTH="{data_type_definition.max_length}"'
+            if data_type_definition.accuracy:
+                output += f' ACCURACY="{data_type_definition.accuracy}"'
+            if data_type_definition.max_value:
+                output += f' MAX-VALUE="{data_type_definition.max_value}"'
+            if data_type_definition.min_value:
+                output += f' MIN-VALUE="{data_type_definition.min_value}"'
+            if data_type_definition.is_self_closed:
+                output += "/>\n"
+            else:
+                output += ">\n"
+                output += "        </DATATYPE-DEFINITION-REAL>\n"
+            return output
+
+        if isinstance(data_type_definition, ReqIFDataTypeDefinitionDate):
+                    output = "        <DATATYPE-DEFINITION-DATE"
+                    if data_type_definition.description:
+                        output += f' DESC="{data_type_definition.description}"'
+
+                    output += f' IDENTIFIER="{data_type_definition.identifier}"'
+                    if data_type_definition.last_change:
+                        output += f' LAST-CHANGE="{data_type_definition.last_change}"'
+                    if data_type_definition.long_name:
+                        output += f' LONG-NAME="{data_type_definition.long_name}"'
+                    output += "/>\n"
+                    return output
 
         raise NotImplementedError(data_type_definition) from None

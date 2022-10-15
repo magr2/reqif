@@ -13,6 +13,8 @@
       <DATATYPES>
         <DATATYPE-DEFINITION-STRING DESC="This is a standard string type." IDENTIFIER="3631dcd2-59d1-11da-beb2-6fbc179f63e3" LONG-NAME="Standard String Type" MAX-LENGTH="65535"/>
         <DATATYPE-DEFINITION-INTEGER DESC="This is a standard integer type." IDENTIFIER="3631dcd2-59d1-11da-beb2-6fbc179f63e4" LONG-NAME="Standard Integer Type"/>
+        <DATATYPE-DEFINITION-REAL DESC="This is a standard real type." IDENTIFIER="3631dcd2-59d1-11da-beb2-6fbc179f63e5" LONG-NAME="Standard Real Type" ACCURACY="12345678" MAX="100000.0" MIN="-100000.0"/>
+        <DATATYPE-DEFINITION-DATE DESC="This is a standard date type." IDENTIFIER="3631dcd2-59d1-11da-beb2-6fbc179f63e6" LONG-NAME="Standard Date Type"/>
       </DATATYPES>
       <SPEC-TYPES>
         <SPEC-OBJECT-TYPE DESC="This is an example SpecType with some common attributes." IDENTIFIER="3631dcd2-59d1-11da-beb2-6fbc179f63e2" LAST-CHANGE="2005-05-30T11:42:19+02:00" LONG-NAME="Example SpecType">
@@ -33,6 +35,22 @@
                 <DATATYPE-DEFINITION-INTEGER-REF>3631dcd2-59d1-11da-beb2-6fbc179f63e4</DATATYPE-DEFINITION-INTEGER-REF>
               </TYPE>
             </ATTRIBUTE-DEFINITION-INTEGER>
+            <ATTRIBUTE-DEFINITION-REAL DESC="This attribute contains the priority of the requirement (scale 0-1)." IDENTIFIER="356b02ec-59d1-11da-afa6-6b90abdfb5dd" LAST-CHANGE="2005-05-30T11:51:25+02:00" LONG-NAME="Priority">
+              <DEFAULT-VALUE>
+                <ATTRIBUTE-VALUE-REAL THE-VALUE="0.47"/>
+              </DEFAULT-VALUE>
+              <TYPE>
+                <DATATYPE-DEFINITION-REAL-REF>3631dcd2-59d1-11da-beb2-6fbc179f63e5</DATATYPE-DEFINITION-REAL-REF>
+              </TYPE>
+            </ATTRIBUTE-DEFINITION-REAL>
+            <ATTRIBUTE-DEFINITION-DATE DESC="This attribute contains the date of the creation of the requirement." IDENTIFIER="356b02ec-59d1-11da-afa6-6b90abdfb5de" LAST-CHANGE="2005-05-30T11:51:25+02:00" LONG-NAME="Date">
+              <DEFAULT-VALUE>
+                <ATTRIBUTE-VALUE-DATE THE-VALUE="2005-05-23T12:00:00+02:00"/>
+              </DEFAULT-VALUE>
+              <TYPE>
+                <DATATYPE-DEFINITION-DATE-REF>3631dcd2-59d1-11da-beb2-6fbc179f63e6</DATATYPE-DEFINITION-DATE-REF>
+              </TYPE>
+            </ATTRIBUTE-DEFINITION-DATE>
           </SPEC-ATTRIBUTES>
         </SPEC-OBJECT-TYPE>
       </SPEC-TYPES>
@@ -49,6 +67,16 @@
                 <ATTRIBUTE-DEFINITION-INTEGER-REF>356b02ec-59d1-11da-afa6-6b90abdfb5dc</ATTRIBUTE-DEFINITION-INTEGER-REF>
               </DEFINITION>
             </ATTRIBUTE-VALUE-INTEGER>
+            <ATTRIBUTE-VALUE-REAL THE-VALUE="0.8">
+              <DEFINITION>
+                <ATTRIBUTE-DEFINITION-REAL-REF>356b02ec-59d1-11da-afa6-6b90abdfb5dd</ATTRIBUTE-DEFINITION-REAL-REF>
+              </DEFINITION>
+            </ATTRIBUTE-VALUE-REAL>
+            <ATTRIBUTE-VALUE-DATE THE-VALUE="2005-05-17T12:00:00+02:00">
+              <DEFINITION>
+                <ATTRIBUTE-DEFINITION-DATE-REF>356b02ec-59d1-11da-afa6-6b90abdfb5de</ATTRIBUTE-DEFINITION-DATE-REF>
+              </DEFINITION>
+            </ATTRIBUTE-VALUE-DATE>
           </VALUES>
           <TYPE>
             <SPEC-OBJECT-TYPE-REF>3631dcd2-59d1-11da-beb2-6fbc179f63e2</SPEC-OBJECT-TYPE-REF>
@@ -66,6 +94,16 @@
                 <ATTRIBUTE-DEFINITION-INTEGER-REF>356b02ec-59d1-11da-afa6-6b90abdfb5dc</ATTRIBUTE-DEFINITION-INTEGER-REF>
               </DEFINITION>
             </ATTRIBUTE-VALUE-INTEGER>
+            <ATTRIBUTE-VALUE-REAL THE-VALUE="1.0">
+              <DEFINITION>
+                <ATTRIBUTE-DEFINITION-REAL-REF>356b02ec-59d1-11da-afa6-6b90abdfb5dd</ATTRIBUTE-DEFINITION-REAL-REF>
+              </DEFINITION>
+            </ATTRIBUTE-VALUE-REAL>
+            <ATTRIBUTE-VALUE-DATE THE-VALUE="2005-05-17T12:00:00+01:00">
+              <DEFINITION>
+                <ATTRIBUTE-DEFINITION-DATE-REF>356b02ec-59d1-11da-afa6-6b90abdfb5de</ATTRIBUTE-DEFINITION-DATE-REF>
+              </DEFINITION>
+            </ATTRIBUTE-VALUE-DATE>
           </VALUES>
           <TYPE>
             <SPEC-OBJECT-TYPE-REF>3631dcd2-59d1-11da-beb2-6fbc179f63e2</SPEC-OBJECT-TYPE-REF>

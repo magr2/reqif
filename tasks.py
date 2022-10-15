@@ -83,7 +83,6 @@ def test_coverage_report(context):
 @task(clean)
 def test_integration(context, focus=None, debug=False):
     cwd = os.getcwd()
-
     reqif_exec = f'python \\"{cwd}/reqif/cli/main.py\\"'
 
     focus_or_none = f"--filter {focus}" if focus else ""
